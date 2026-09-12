@@ -1,0 +1,7 @@
+/build/
+/artifacts/
+*.user
+*.suo
+*.log
+*.sav
+.vs/
