@@ -2,7 +2,9 @@
 
 Replace merchant rerolls with a searchable catalog of eligible artifacts and tablets.
 
-**[Download v1.0.0 for BepInEx 6](downloads/SephiriaMerchantChoice-1.0.0-BepInEx6.zip?raw=true)** · [简体中文](README.md)
+**[Download v1.0.0 for BepInEx 6](https://github.com/liaodongxu/SephiriaMerchantChoice/releases/tag/v1.0.0)** · [简体中文](README.md)
+
+Under **Assets**, download `SephiriaMerchantChoice-1.0.0-BepInEx6.zip`. The automatically generated `Source code` archives are not install packages.
 
 ## Features
 

@@ -4,7 +4,9 @@
 
 将《Sephiria》的随机补货改为可搜索、可筛选的商品目录，直接挑选符合条件的神器和石板。
 
-**[下载 v1.0.0（BepInEx 6）](downloads/SephiriaMerchantChoice-1.0.0-BepInEx6.zip?raw=true)** · [English](README.en.md)
+**[下载 v1.0.0（BepInEx 6）](https://github.com/liaodongxu/SephiriaMerchantChoice/releases/tag/v1.0.0)** · [English](README.en.md)
+
+在发布页的 **Assets** 中下载 `SephiriaMerchantChoice-1.0.0-BepInEx6.zip`；`Source code` 是源码，不是安装包。
 
 ## 功能
 

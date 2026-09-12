@@ -1,0 +1,48 @@
+name: Publish Merchant Choice v1.0.0
+
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/release-v1.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-v1.0.0
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'liaodongxu/SephiriaMerchantChoice' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Download and verify the reviewed package
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$GITHUB_SHA"
+          curl --fail --location --retry 3 "$base/downloads/SephiriaMerchantChoice-1.0.0-BepInEx6.zip" --output SephiriaMerchantChoice-1.0.0-BepInEx6.zip
+          curl --fail --location --retry 3 "$base/downloads/SHA256SUMS.txt" --output SHA256SUMS.txt
+          curl --fail --location --retry 3 "$base/.github/release-notes/v1.0.0.md" --output release-notes.md
+          sha256sum --check SHA256SUMS.txt
+          echo '28fafaceb0c6e6cac78435bfcdfa314d056b21b164715bd79320e101fcd37451  SephiriaMerchantChoice-1.0.0-BepInEx6.zip' | sha256sum --check
+          unzip -t SephiriaMerchantChoice-1.0.0-BepInEx6.zip
+      - name: Create the release without overwriting existing releases
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view v1.0.0 >/dev/null 2>&1; then
+            echo 'Release v1.0.0 already exists; leaving it unchanged.'
+            exit 0
+          fi
+          gh release create v1.0.0 \
+            SephiriaMerchantChoice-1.0.0-BepInEx6.zip SHA256SUMS.txt \
+            --target "$GITHUB_SHA" \
+            --title '商人自选商品 / Merchant Choice v1.0.0' \
+            --notes-file release-notes.md --latest
